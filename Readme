@@ -1,0 +1,83 @@
+# Data
+
+This directory contains the processed data and principal result files used for the downstream analyses reported in the study.
+
+## Data Source
+
+The genomic and phenotypic information analysed in this study was derived from the publicly available **Y1000+ yeast collection**.
+
+The study included **420 yeast taxa** for which the required genomic and phenotypic information was available.
+
+Y1000+ Project:  
+https://myco-lb.jgi.doe.gov/yeasts-1000/
+
+Y1000+ genome resources:  
+https://doi.org/10.25452/figshare.plus.c.6714042
+
+## Genomic Data
+
+The initial genomic machine-learning matrix contained:
+
+- **420 yeast taxa**
+- **1,997 genomic feature columns**
+- **1,988 BUSCO-derived features**
+
+Following feature auditing and selection, **79 robust BUSCO features** were retained as the final genomic feature space used for the downstream genome–phenotype analyses.
+
+The three phenotypes analysed were:
+
+1. **Carbon-source breadth** – number of carbon substrates utilized by a taxon.
+2. **Nitrogen-source breadth** – number of nitrogen sources utilized by a taxon.
+3. **Utilized median growth** – median growth phenotype calculated from the available utilization/growth measurements.
+
+## Upstream Data Processing
+
+The initial genome processing and BUSCO analyses were performed separately in a **Linux command-line environment** using the corresponding bioinformatics workflows.
+
+The raw Y1000+ genomic resources and the upstream Linux-based BUSCO processing scripts are **not included in this repository**. The present repository contains the processed data and downstream analytical outputs required for the final model integration, functional/network analysis, and Pareto-based candidate prioritization.
+
+## Data Included in This Repository
+
+The data files provided here correspond to the downstream analyses presented in the manuscript. Where applicable, these include:
+
+- Processed genomic feature matrices
+- Robust BUSCO feature lists
+- Phenotype data used for downstream analysis
+- Final machine-learning results
+- Phylogeny-aware validation results
+- Permutation-testing results
+- Functional/pathway analysis results
+- BUSCO–pathway network data
+- Pareto-optimal candidate taxa and their phenotypic profiles
+
+The exact files available in this directory should be considered the authoritative processed outputs associated with the corresponding analyses.
+
+## Final Model Results
+
+The final integrated models were:
+
+| Phenotype | Feature set | Final model | OOF R² | Mean phylogenetic-fold R² | Permutation P |
+|---|---|---|---:|---:|---:|
+| Carbon-source breadth | Robust_79 | Random Forest | 0.0036 | −0.2771 | 0.0198 |
+| Nitrogen-source breadth | Robust_79 | Random Forest | −0.0949 | −0.1871 | 0.9703 |
+| Utilized median growth | Robust_79 | Elastic Net | −0.0319 | −0.1520 | 0.9802 |
+
+These results should be interpreted as the final model outputs used in the manuscript.
+
+## Pareto Candidate Data
+
+The Pareto analysis integrated the three phenotypic dimensions:
+
+- Carbon-source breadth
+- Nitrogen-source breadth
+- Utilized median growth
+
+This analysis identified **11 Pareto-optimal yeast taxa** from the 420-taxon dataset.
+
+The candidate taxa represent non-dominated combinations of the analysed phenotypes and should be considered **computationally prioritized candidates for experimental investigation**, rather than experimentally validated chassis.
+
+## Data Reuse
+
+The original Y1000+ data remain subject to the terms and conditions of the respective public data repository. Users reusing the processed data should cite both the original Y1000+ resource and the associated study.
+
+For questions regarding processed data or additional files generated during the study, please contact the corresponding author.
