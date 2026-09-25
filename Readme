@@ -1,0 +1,144 @@
+# Data
+
+## Overview
+
+This directory contains the processed data, feature tables, phenotype information, and analytical outputs associated with the Y1000+ yeast chassis prioritization study.
+
+The study analysed **420 yeast taxa** from the Y1000+ collection using genomic features and three quantitative phenotypes:
+
+* Carbon-source breadth
+* Nitrogen-source breadth
+* Utilized median growth
+
+The final genome–phenotype modelling framework used **79 robust BUSCO features**.
+
+## Data Source
+
+The genomic and phenotypic resources were obtained from the publicly available **Y1000+ yeast collection**.
+
+**Y1000+ Project:**
+https://myco-lb.jgi.doe.gov/yeasts-1000/
+
+**Y1000+ genome resources:**
+https://doi.org/10.25452/figshare.plus.c.6714042
+
+The original Y1000+ genomic resources are not redistributed in this repository.
+
+## Genomic Data
+
+The initial genomic machine-learning matrix consisted of:
+
+* **420 taxa**
+* **1,997 genomic feature columns**
+* **1,988 BUSCO-derived features**
+
+Following feature auditing and robustness assessment, **79 BUSCO features** were retained as the robust genomic feature space used for the final genome–phenotype analyses.
+
+## Phenotypic Data
+
+Three quantitative phenotypes were analysed independently:
+
+### Carbon-source breadth
+
+The number of carbon substrates utilized by each taxon.
+
+### Nitrogen-source breadth
+
+The number of nitrogen sources utilized by each taxon.
+
+### Utilized median growth
+
+The median growth phenotype calculated from the available utilization/growth measurements.
+
+These phenotypes were modelled independently and subsequently integrated during multi-trait candidate prioritization.
+
+## BUSCO and Upstream Genomic Processing
+
+The initial genome processing and BUSCO analyses were performed in a **Linux command-line environment** using bioinformatics workflows.
+
+The raw genome processing and BUSCO execution were therefore not performed through the Python scripts in this repository. The resulting processed BUSCO-derived feature information was subsequently used for the downstream phylogeny-aware machine-learning, functional interpretation, network analysis, and Pareto prioritization.
+
+The repository contains Python scripts supporting the downstream analysis and integration of these processed genomic features.
+
+## Data Processing and Analysis Workflow
+
+The overall data flow was:
+
+Y1000+ genomic resources
+↓
+Genome processing and BUSCO analysis in Linux
+↓
+420-taxon genomic feature matrix
+↓
+Robust BUSCO feature selection
+↓
+79-feature genomic representation
+↓
+Genome–phenotype modelling
+↓
+Phylogeny-aware validation and permutation testing
+↓
+Functional/pathway interpretation
+↓
+Network analysis
+↓
+Multi-trait Pareto optimization
+↓
+11 candidate yeast taxa
+
+## Final Model Results
+
+The final genome–phenotype models were:
+
+| Phenotype               | Feature set | Final model   |  OOF R² | Mean phylogenetic-fold R² | Permutation P |
+| ----------------------- | ----------- | ------------- | ------: | ------------------------: | ------------: |
+| Carbon-source breadth   | Robust_79   | Random Forest |  0.0036 |                   −0.2771 |        0.0198 |
+| Nitrogen-source breadth | Robust_79   | Random Forest | −0.0949 |                   −0.1871 |        0.9703 |
+| Utilized median growth  | Robust_79   | Elastic Net   | −0.0319 |                   −0.1520 |        0.9802 |
+
+These results represent the final model integration used in the study.
+
+## Functional and Network Analysis Data
+
+Processed data associated with functional interpretation and network analysis are used to examine the biological context of genomic features associated with the phenotypic analyses.
+
+These analyses include:
+
+* BUSCO functional annotation
+* Functional feature interpretation
+* KEGG pathway associations
+* Pathway-level integration
+* BUSCO–pathway network construction
+* Carbon-breadth-associated biological interpretation
+
+The network analyses provide functional and associative context and should not be interpreted as demonstrating direct causal relationships between individual genomic features and phenotypes.
+
+## Pareto Analysis Data
+
+The Pareto analysis integrated:
+
+* Carbon-source breadth
+* Nitrogen-source breadth
+* Utilized median growth
+
+The analysis identified **11 Pareto-optimal candidate taxa** from the 420-taxon dataset.
+
+The Pareto candidates represent non-dominated combinations of the three phenotypic traits and therefore reflect complementary phenotypic profiles rather than a single universally optimal phenotype.
+
+These taxa represent **computationally prioritized candidates for subsequent experimental evaluation**, rather than experimentally validated microbial chassis.
+
+## Repository and Data Scope
+
+The repository provides the computational scripts and processed analytical components supporting the study. The original Y1000+ genomic resources remain available through the public Y1000+ repositories and are not redistributed here.
+
+Where large intermediate or raw files are not included, the corresponding public data source and processing workflow are documented in the repository and manuscript.
+
+## Data Reuse
+
+Users reusing the processed data or analytical outputs should cite:
+
+1. The original Y1000+ resource.
+2. The associated study/manuscript.
+3. This repository where applicable.
+
+For questions regarding processed datasets or additional analysis outputs, please contact the corresponding author.
